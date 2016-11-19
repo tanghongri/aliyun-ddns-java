@@ -81,6 +81,7 @@ public class App {
 							AddRequest.setType(Info.m_type);
 							AddRequest.setValue(curip);
 							client.getAcsResponse(AddRequest);
+							System.out.println("Add:"+Info.m_DomainName+Info.m_RRs[i]+Info.m_type+curip);
 						} else {
 							for (Record domain : list) {
 								if (!domain.getValue().equals(curip)) {// 修改记录
@@ -89,6 +90,7 @@ public class App {
 									UpdateRequest.setType(Info.m_type);
 									UpdateRequest.setValue(curip);
 									client.getAcsResponse(UpdateRequest);
+									System.out.println("Update:"+Info.m_DomainName+Info.m_RRs[i]+Info.m_type+curip);
 								}
 							}
 						}
@@ -143,8 +145,6 @@ public class App {
 			while ((read = in.readLine()) != null) {
 				inputLine += read;
 			}
-			System.out.println(inputLine);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -154,6 +154,7 @@ public class App {
 		Matcher m = p.matcher(inputLine);
 		if (m.find()) {
 			ip = m.group(0);
+			System.out.println("curip:"+ip);
 		}
 		return ip;
 	}
